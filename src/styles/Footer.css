@@ -1,0 +1,21 @@
+footer {
+  background: var(--white);
+  padding: 1.5rem;
+  text-align: center;
+  box-shadow: 0 -2px 5px var(--shadow);
+  margin-top: 2rem;
+}
+
+footer .social-links a {
+  margin: 0 1rem;
+  text-decoration: none;
+  color: var(--primary);
+  font-weight: 500;
+}
+
+footer .social-links a:hover {
+  color: var(--accent);
+}
+.intro-left, .intro-right {
+  flex: 1;
+}

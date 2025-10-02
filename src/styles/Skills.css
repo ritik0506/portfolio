@@ -1,0 +1,111 @@
+/* --- Main container for the skills section --- */
+.skills-section {
+  padding: 4rem 0;
+  background-color: #f8f9fa;
+  text-align: center;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  color: #343a40;
+  margin-bottom: 3rem;
+  position: relative;
+  display: inline-block;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 70%;
+  height: 4px;
+  background: linear-gradient(90deg, #4a69bd, #6a89cc);
+  border-radius: 2px;
+}
+
+/* --- Keyframes for the scrolling animation --- */
+@keyframes scroll-cards {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    /* Move track by the width of the original 4 cards */
+    transform: translateX(calc(-360px * 4)); /* card width 320px + gap 40px */
+  }
+}
+
+/* --- Carousel container --- */
+.carousel-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  overflow: hidden;
+  position: relative;
+  -webkit-mask-image: linear-gradient(to right, transparent, white 10%, white 90%, transparent);
+  mask-image: linear-gradient(to right, transparent, white 10%, white 90%, transparent);
+}
+
+/* --- The track that holds the category cards --- */
+.carousel-track {
+  display: flex;
+  width: calc(360px * 8); /* (card width + gap) * 8 cards (4 original + 4 duplicates) */
+  animation: scroll-cards 30s linear infinite;
+}
+
+/* Pause animation on hover */
+.carousel-container:hover .carousel-track {
+  animation-play-state: paused;
+}
+
+/* --- Styling for each category card (from previous version) --- */
+.skill-category-card {
+  background: #ffffff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  width: 320px;
+  flex-shrink: 0;
+  margin: 0 20px; /* This creates the gap between cards */
+  transition: transform 0.3s ease;
+}
+
+.skill-category-card:hover {
+  transform: translateY(-5px);
+}
+
+.skill-category-card h3 {
+  font-size: 1.5rem;
+  color: #4a69bd;
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  border-bottom: 2px solid #e9ecef;
+  padding-bottom: 1rem;
+}
+
+.skills-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.skill-item {
+  display: flex;
+  align-items: center;
+  background-color: #f1f3f5;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+}
+
+.skill-icon {
+  font-size: 1.5rem;
+  color: #4a69bd;
+  margin-right: 0.75rem;
+}
+
+.skill-name {
+  font-size: 1rem;
+  color: #495057;
+  font-weight: 500;
+}
