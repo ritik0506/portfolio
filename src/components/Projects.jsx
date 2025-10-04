@@ -16,8 +16,8 @@ const mockProjects = [
       "Focused on creating a premium, student-friendly interface with modular, reusable UI components and a seamless user experience." //
     ],
     techStack: ["React", "Node.js", "JavaScript", "HTML", "CSS"], //
-    githubLink: "#", // Replace with your GitHub link
-    liveLink: "#", // Replace with your live demo link
+    githubLink: "https://github.com/ritik0506/swapnotes", // Replace with your GitHub link
+    liveLink: "https://swapmynotes.netlify.app/", // Replace with your live demo link
   },
   {
     _id: "2",
@@ -32,7 +32,7 @@ const mockProjects = [
       "Implemented full CRUD (Create, Read, Update, Delete) operations for car rental management." //
     ],
     techStack: ["Django", "MySQL", "JavaScript", "HTML", "CSS"], //
-    githubLink: "#",
+    githubLink: "https://github.com/ritik0506/car-rental",
     liveLink: "#",
   },
   {

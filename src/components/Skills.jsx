@@ -44,22 +44,21 @@ const skillCategories = [
 ];
 
 const Skills = () => {
-  // Duplicate the categories to create a seamless loop effect
   const duplicatedCategories = [...skillCategories, ...skillCategories];
 
   return (
-    <div className="skills-section">
-      <h2 className="section-title">Technical Skills</h2>
-      <div className="carousel-container">
-        <div className="carousel-track">
+    <div className="skills-wrapper">
+      <h2 className="skills-heading">Technical Skills</h2>
+      <div className="skills-carousel">
+        <div className="skills-track">
           {duplicatedCategories.map((category, index) => (
-            <div className="skill-category-card" key={index}>
+            <div className="skills-card" key={index}>
               <h3>{category.name}</h3>
-              <div className="skills-list">
+              <div className="skills-items">
                 {category.skills.map((skill) => (
-                  <div className="skill-item" key={skill.name}>
-                    <span className="skill-icon">{skill.icon}</span>
-                    <span className="skill-name">{skill.name}</span>
+                  <div className="skills-entry" key={skill.name}>
+                    <span className="skills-icon">{skill.icon}</span>
+                    <span className="skills-label">{skill.name}</span>
                   </div>
                 ))}
               </div>

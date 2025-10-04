@@ -1,75 +1,45 @@
-// server.js
+const express = require("express");
+const mongoose = require("mongoose");
+const cors = require("cors");
+const bodyParser = require("body-parser");
+const dotenv = require("dotenv");
+const Message = require("./models/Message");
 
-// 1. IMPORT LIBRARIES
-const express = require('express');
-const cors = require('cors');
-const mongoose = require('mongoose');
-const nodemailer = require('nodemailer');
-require('dotenv').config();
+dotenv.config();
 
-const Contact = require('./models/Contact');
-
-
-// 2. INITIALIZE APP & MIDDLEWARE
 const app = express();
+
+// Middleware
 app.use(cors());
-app.use(express.json());
+app.use(bodyParser.json());
 
+// MongoDB Connection
+mongoose.connect(process.env.MONGO_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
+.then(() => console.log("✅ MongoDB connected"))
+.catch(err => console.error("❌ DB connection error:", err));
 
-// 3. CONNECT TO DATABASE
-mongoose.connect(process.env.MONGO_URI)
-  .then(() => console.log('Successfully connected to MongoDB Atlas!'))
-  .catch(error => console.error('Initial MongoDB connection error:', error));
+// Routes
+app.post("/api/contact", async (req, res) => {
+  try {
+    const { name, email, message } = req.body;
 
+    if (!name || !email || !message) {
+      return res.status(400).json({ success: false, message: "All fields required" });
+    }
 
-// 4. CONFIGURE NODEMAILER
-const transporter = nodemailer.createTransport({
-  service: 'gmail',
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS,
-  },
+    const newMessage = new Message({ name, email, message });
+    await newMessage.save();
+
+    res.status(200).json({ success: true, message: "Message sent successfully!" });
+  } catch (error) {
+    console.error("Error saving message:", error);
+    res.status(500).json({ success: false, message: "Server error. Please try again." });
+  }
 });
 
-
-// 5. DEFINE THE API ROUTE WITH DETAILED ERROR HANDLING
-app.post('/api/contact', async (req, res) => {
-  const { name, email, message } = req.body;
-
-  // --- Step 1: Save to Database ---
-  try {
-    const newSubmission = new Contact({ name, email, message });
-    await newSubmission.save();
-    console.log('✅ Submission successfully saved to database.');
-  } catch (dbError) {
-    // If this block runs, there's a problem with your MongoDB connection.
-    console.error('❌ DATABASE ERROR:', dbError);
-    return res.status(500).json({ error: 'Failed to save submission to the database.' });
-  }
-
-  // --- Step 2: Send Email Notification ---
-  try {
-    const mailOptions = {
-      from: `"${name}" <${process.env.EMAIL_USER}>`,
-      to: process.env.RECIPIENT_EMAIL,
-      subject: `New Portfolio Contact: ${name}`,
-      html: `<h3>New message from ${name} (${email})</h3><p>${message}</p>`,
-    };
-    await transporter.sendMail(mailOptions);
-    console.log('✅ Email notification sent successfully.');
-  } catch (emailError) {
-    // If this block runs, there's a problem with your email credentials.
-    console.error('❌ EMAIL ERROR:', emailError);
-    return res.status(500).json({ error: 'Failed to send email notification.' });
-  }
-
-  // --- If both steps succeed ---
-  res.status(201).json({ message: 'Submission successful!' });
-});
-
-
-// 6. START THE SERVER
+// Start Server
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-  console.log(`Backend server is running on http://localhost:${PORT}`);
-});
+app.listen(PORT, () => console.log(`🚀 Server running on http://localhost:${PORT}`));
