@@ -32,19 +32,13 @@ const About = () => {
         <div className="about-right">
           <h2>About Me</h2>
           <p>
-            I am an innovative developer, currently pursuing a Master of Computer Application
-            from R V Institute Of Technology. With a strong foundation in both
-            front-end development and data analysis, I am proficient in creating
-            dynamic user experiences using technologies like React.js, HTML, CSS,
-            and JavaScript. My experience extends to back-end development with
-            Django and handling databases like MySQL. I have practical
-            experience in machine learning through an internship at Prinston Smart
-            Engineers, where I developed a mobile price classification model using
-            Python, Pandas, and Numpy. Additionally, I have collaborated
-            in a team environment at EY GDS to build a full-stack car rental
-            application. I am dedicated to enhancing online experiences by
-            leveraging both my creative development skills and data-driven
-            strategies.
+           I’m an innovative full-stack developer currently pursuing my Master of Computer Application at R V Institute Of Technology. I love building dynamic, user-friendly web applications that combine clean design with robust functionality.
+
+I work on the front-end with React.js, HTML, CSS, and JavaScript to create interactive and responsive user experiences. On the back-end, I’m experienced with Node.js and have worked with databases like MongoDB and MySQL to build scalable, reliable applications.
+
+One of my latest projects, SwapNotes, is a platform designed to help students collaborate, study together, and share notes efficiently. Users can upload and explore notes, join study groups, and engage in collaborative learning—all in a smooth and interactive environment. Previously, at EY GDS, I collaborated with a team to develop a full-stack car rental application, and I’ve also built personal projects like my portfolio website, showcasing modern UI and seamless functionality.
+
+I’m passionate about bringing ideas to life through code, whether it’s crafting polished front-end interfaces or building powerful back-end systems. I enjoy creating applications that people love to use and that make a meaningful impact
           </p>
         </div>
       </div>
