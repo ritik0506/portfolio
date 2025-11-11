@@ -11,6 +11,17 @@
   --radius: 16px; /* Slightly larger radius for a softer look */
 }
 
+:root[data-theme="dark"] {
+  --primary-color: #7aa2f7;
+  --secondary-color: #6a89cc;
+  --background-light: #0f172a;
+  --background-dark: #111c32;
+  --text-primary: #e2e8f0;
+  --text-secondary: #9ca3af;
+  --white: #1e293b;
+  --shadow: rgba(2, 6, 23, 0.65);
+}
+
 /* --- Keyframe animation for a subtle fade-in effect --- */
 @keyframes fadeIn {
   from {
@@ -100,9 +111,136 @@
   transition: all 0.3s ease;
 }
 
+.social-icon {
+  width: 45px;
+  height: 45px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--background-light);
+  transition: all 0.3s ease;
+}
+
 .social-links a:hover {
   color: var(--primary-color);
   transform: translateY(-5px);
+}
+
+.social-icon:hover {
+  background: var(--primary-color);
+  color: white !important;
+  transform: translateY(-5px) scale(1.1);
+}
+
+/* Profile Wrapper with Status Indicator */
+.profile-pic-wrapper {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.status-indicator {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 20px;
+  height: 20px;
+  background: #10b981;
+  border: 3px solid white;
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Stats Section */
+.stats-section {
+  display: flex;
+  gap: 1.5rem;
+  margin: 2rem 0;
+  justify-content: center;
+}
+
+.stat-item {
+  text-align: center;
+  padding: 1rem;
+  background: var(--background-light);
+  border-radius: 12px;
+  flex: 1;
+  opacity: 0;
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.stat-item h4 {
+  margin: 0;
+  font-size: 2rem;
+  color: var(--primary-color);
+  font-weight: 700;
+}
+
+.stat-item p {
+  margin: 0.5rem 0 0 0;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+/* Download CV Button */
+.download-cv-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  color: white;
+  text-decoration: none;
+  border-radius: 25px;
+  font-weight: 600;
+  margin-top: 1.5rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(74, 105, 189, 0.3);
+}
+
+.download-cv-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(74, 105, 189, 0.4);
+}
+
+/* Typing Animation */
+.typing-text {
+  display: inline-block;
+  border-right: 2px solid var(--primary-color);
+  animation: typing 3s steps(30) infinite, blink 0.75s step-end infinite;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+@keyframes typing {
+  0%, 100% { width: 0; }
+  50% { width: 100%; }
+}
+
+@keyframes blink {
+  from, to { border-color: transparent; }
+  50% { border-color: var(--primary-color); }
 }
 
 /* --- Right Column: Improved typography for better readability --- */
@@ -134,11 +272,85 @@
   border-radius: 2px;
 }
 
-.about-right p {
+.about-text {
+  margin-bottom: 2rem;
+}
+
+.about-description {
   color: var(--text-secondary);
-  line-height: 1.8; /* Increased for readability */
+  line-height: 1.8;
   text-align: justify;
   font-size: 1.05rem;
+  max-height: 180px;
+  overflow: hidden;
+  transition: max-height 0.5s ease;
+  white-space: pre-line;
+}
+
+.about-description.expanded {
+  max-height: 1000px;
+}
+
+.read-more-btn {
+  background: none;
+  border: none;
+  color: var(--primary-color);
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  font-size: 0.95rem;
+}
+
+.read-more-btn:hover {
+  background: var(--background-light);
+  transform: translateX(5px);
+}
+
+/* Highlights Section */
+.highlights {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: var(--background-light);
+  border-radius: 12px;
+  border-left: 4px solid var(--primary-color);
+}
+
+.highlights h3 {
+  margin-top: 0;
+  color: var(--primary-color);
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+}
+
+.highlights-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.highlights-list li {
+  padding: 0.75rem 0;
+  color: var(--text-secondary);
+  font-size: 1rem;
+  border-bottom: 1px solid var(--background-dark);
+  transition: all 0.3s ease;
+}
+
+.highlights-list li:last-child {
+  border-bottom: none;
+}
+
+.highlights-list li:hover {
+  padding-left: 10px;
+  color: var(--primary-color);
+}
+
+/* Fade-in animation for container */
+.about-container.fade-in {
+  animation: fadeIn 0.8s ease-out;
 }
 
 /* --- Responsive adjustments for smaller screens --- */

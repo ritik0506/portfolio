@@ -15,6 +15,17 @@
   --shadow-color: rgba(0, 0, 0, 0.08);
 }
 
+:root[data-theme="dark"] {
+  --bg-color: #0f172a;
+  --card-bg-color: #1e293b;
+  --text-primary: #e2e8f0;
+  --text-secondary: #cbd5f5;
+  --accent-color: #4a69bd;
+  --accent-hover: #6a89cc;
+  --border-color: rgba(255, 255, 255, 0.08);
+  --shadow-color: rgba(15, 23, 42, 0.65);
+}
+
 /* ---
   SIDE-BY-SIDE LAYOUT
 --- */
@@ -149,11 +160,6 @@
 }
 .cta-button.secondary:hover { background: var(--accent-color); color: white; }
 
-
-/* Modal styles remain the same */
-.modal-overlay { /* ... */ }
-.modal-content { /* ... */ }
-
 /* ================================================= */
 /* === RESPONSIVE DESIGN (MEDIA QUERIES) === */
 /* ================================================= */
@@ -176,7 +182,7 @@
     flex-direction: column; /* Stacks the image on top of the content */
     gap: 2rem;
     padding: 40px 20px; /* Add some side padding */
-    min-height: auto; /* Allow height to be determined by content */
+    min-height: 0; /* Allow height to be determined by content */
   }
 
   .intro-left {
